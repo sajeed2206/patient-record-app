@@ -107,3 +107,21 @@ document.getElementById('export').addEventListener('click', function() {
 });
 
 checkAuthAndRender();
+
+document.getElementById('import').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const lines = e.target.result.split('\n').slice(1); // skip header
+        lines.forEach(line => {
+            const [name, age, contact, diagnosis, record, medication, followup, notes] = line.split(',');
+            if (name) {
+                patients.push({ name, age, contact, diagnosis, record, medication, followup, notes });
+            }
+        });
+        savePatients();
+    };
+    reader.readAsText(file);
+});
