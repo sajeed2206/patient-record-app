@@ -1,4 +1,38 @@
 
+const VALID_USER = { username: 'admin', password: 'pass123' };
+
+function isAuthenticated() {
+    return localStorage.getItem('loggedIn') === 'true';
+}
+
+function logout() {
+    localStorage.removeItem('loggedIn');
+    location.reload();
+}
+
+function checkAuthAndRender() {
+    if (!isAuthenticated()) {
+        document.getElementById('login-section').style.display = 'block';
+        document.getElementById('app-section').style.display = 'none';
+    } else {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('app-section').style.display = 'block';
+        renderPatients();
+    }
+}
+
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
+    if (username === VALID_USER.username && password === VALID_USER.password) {
+        localStorage.setItem('loggedIn', 'true');
+        checkAuthAndRender();
+    } else {
+        alert('Invalid credentials');
+    }
+});
+
 let patients = JSON.parse(localStorage.getItem('patients')) || [];
 
 function savePatients() {
@@ -72,4 +106,4 @@ document.getElementById('export').addEventListener('click', function() {
     a.click();
 });
 
-renderPatients();
+checkAuthAndRender();
