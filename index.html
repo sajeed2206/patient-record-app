@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Records</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <h1>Patient Record App</h1>
+    <div id="app">
+        <form id="patient-form">
+            <input type="text" placeholder="Name" id="name" required>
+            <input type="number" placeholder="Age" id="age" required>
+            <input type="text" placeholder="Contact" id="contact" required>
+            <input type="text" placeholder="Diagnosis" id="diagnosis">
+            <textarea placeholder="Medical Record Notes" id="record"></textarea>
+            <textarea placeholder="Medication Given" id="medication"></textarea>
+            <input type="date" id="followup">
+            <textarea placeholder="Additional Notes" id="notes"></textarea>
+            <button type="submit">Save Patient</button>
+        </form>
+        <button id="export">Export CSV</button>
+        <div id="patients"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

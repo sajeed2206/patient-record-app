@@ -1,0 +1,10 @@
+
+{
+    "name": "Patient Record App",
+    "short_name": "PatientRecords",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "A simple PWA to manage patient records",
+    "icons": []
+}
